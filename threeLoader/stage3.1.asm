@@ -37,7 +37,6 @@ printStr:               ; Routine: print the string pointed to by si
       pusha
       mov ah, 0x0E      ; ah= 0x0E: teletype output
                         ; AL = Character, BH = Page Number, BL = Color (only in graphic mode)
-      
       .loopStr:
         lodsb           ; load the byte in [si] into al
         cmp al, 0x00    ; If it is zero, then terminate the string

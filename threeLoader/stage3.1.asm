@@ -125,20 +125,28 @@ readDisk:               ; Routine: read disk, output message and freeze if error
 
 
 
-; Define a partition table: [3 MiB Partition], [Rest of Disk]
+; Define a partition table:
 times 440-($-$$) db 0x00
 
-dw 0xae75
-dw 0x20e0
+dw 0xD15C
+dw 0xB001
 dw 0x0000
-dw 0x2000
-dw 0x0021
-dw 0xfa83
-dw 0x6c4e
-dw 0x0800
+
+; 0x80 = bootable : else 0x00
+dw 0x0080
 dw 0x0000
-dw 0x7000
-dw 0x0059
+
+; Partition type
+dw 0x0083
+dw 0x0000
+
+; First sector of partition
+dw 0x0001         ; Secnd Word
+dw 0x0000         ; First Word
+
+; Number of Sectors
+dw 0x0006         ; Secnd Word
+dw 0x0000         ; First Word
 
 times 510-($-$$) db 0x00
 dw 0xaa55                     ; This number tells the BIOS that the disk is bootable

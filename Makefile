@@ -12,4 +12,4 @@ loader.bin: $(loaderBIN)
 	nasm -f bin $< -o $@
 
 clean:
-	rm loader/*.bin
+	rm threeLoader/*.bin
